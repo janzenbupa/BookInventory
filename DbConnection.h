@@ -11,16 +11,16 @@ public:
 	
 	struct Book
 	{
-		int Id;
+		long long int Id;
 		std::string Title;
 		std::string ISBN;
 		std::string PublishDate;
-		int AuthorId;
+		long long int AuthorId;
 	};
 
 	struct Author
 	{
-		int Id;
+		long long int Id;
 		std::string FirstName;
 		std::string LastName;
 	};

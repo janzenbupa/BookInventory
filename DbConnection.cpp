@@ -34,9 +34,11 @@ void DbConnection::DisconnectFromDatabase()
 
 std::vector<DbConnection::Book> DbConnection::GetBooks()
 {
-	const std::string tableName = "SELECT * FROM [dbo].[Books]";
-
 	std::vector<DbConnection::Book> books;
+
+	const SAString cmdText = "SELECT * FROM [dbo].[Books]";
+
+	sqlCmd.setCommandText(_TSA(cmdText));
 
 	sqlCmd.Execute();
 
@@ -59,9 +61,11 @@ std::vector<DbConnection::Book> DbConnection::GetBooks()
 
 std::vector<DbConnection::Author> DbConnection::GetAuthors()
 {
-	const std::string tableName = "SELECT * FROM [dbo].[Authors]";
-
 	std::vector<DbConnection::Author> authors;
+
+	const SAString cmdText = "SELECT * FROM [dbo].[Authors]";
+
+	sqlCmd.setCommandText(_TSA(cmdText));
 
 	sqlCmd.Execute();
 
