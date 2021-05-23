@@ -34,4 +34,6 @@ public:
 	std::vector<Book> GetBooks();
 
 	std::vector<Author> GetAuthors();
+
+	bool LogIn(std::string userName, std::string password);
 };

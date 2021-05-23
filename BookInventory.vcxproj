@@ -144,9 +144,11 @@
     <ClCompile Include="BookInventory.cpp" />
     <ClCompile Include="ConnectToSql.cpp" />
     <ClCompile Include="DbConnection.cpp" />
+    <ClCompile Include="SignIn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DbConnection.h" />
+    <ClInclude Include="SignIn.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -83,3 +83,32 @@ std::vector<DbConnection::Author> DbConnection::GetAuthors()
 
 
 }
+
+bool DbConnection::LogIn(std::string userName, std::string password)
+{
+	const SAString cmdText = "SELECT * FROM [dbo].[Account] WHERE [UserName] = :1";
+
+	sqlCmd.setCommandText(_TSA(cmdText));
+
+	sqlCmd.Param(1).setAsString() = _TSA(userName.c_str());
+
+	sqlCmd.Execute();
+
+	while (sqlCmd.FetchNext())
+	{
+		std::string user = sqlCmd.Field(_TSA("UserName")).asString().GetMultiByteChars();
+		std::string userPass = sqlCmd.Field(_TSA("UserPassword")).asString().GetMultiByteChars();
+
+		if (user.empty() || userPass.empty())
+		{
+			return false;
+		}
+
+		if (userPass != password)
+		{
+			return false;
+		}
+
+		return true;
+	}
+}

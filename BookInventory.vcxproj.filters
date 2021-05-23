@@ -24,9 +24,15 @@
     <ClCompile Include="ConnectToSql.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SignIn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DbConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SignIn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
