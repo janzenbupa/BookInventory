@@ -32,9 +32,9 @@ void DbConnection::DisconnectFromDatabase()
 }
 
 
-std::vector<DbConnection::Book> DbConnection::GetBooks()
+std::vector<Inventory::Book> DbConnection::GetBooks()
 {
-	std::vector<DbConnection::Book> books;
+	std::vector<Inventory::Book> books;
 
 	const SAString cmdText = "SELECT * FROM [dbo].[Books]";
 
@@ -44,7 +44,7 @@ std::vector<DbConnection::Book> DbConnection::GetBooks()
 
 	while (sqlCmd.FetchNext())
 	{
-		DbConnection::Book book;
+		Inventory::Book book;
 		book.Id = sqlCmd.Field(_TSA("Id")).asLong();
 		book.Title = sqlCmd.Field(_TSA("Title")).asString().GetMultiByteChars();
 		book.ISBN = sqlCmd.Field(_TSA("ISBN")).asString().GetMultiByteChars();
@@ -59,9 +59,9 @@ std::vector<DbConnection::Book> DbConnection::GetBooks()
 
 }
 
-std::vector<DbConnection::Author> DbConnection::GetAuthors()
+std::vector<Inventory::Author> DbConnection::GetAuthors()
 {
-	std::vector<DbConnection::Author> authors;
+	std::vector<Inventory::Author> authors;
 
 	const SAString cmdText = "SELECT * FROM [dbo].[Authors]";
 
@@ -71,7 +71,7 @@ std::vector<DbConnection::Author> DbConnection::GetAuthors()
 
 	while (sqlCmd.FetchNext())
 	{
-		DbConnection::Author author;
+		Inventory::Author author;
 		author.Id = sqlCmd.Field(_TSA("Id")).asLong();
 		author.FirstName = sqlCmd.Field(_TSA("FirstName")).asString().GetMultiByteChars();
 		author.LastName = sqlCmd.Field(_TSA("LastName")).asString().GetMultiByteChars();
