@@ -22,7 +22,7 @@ int main()
 		SignIn signIn;
 
 		con.ConnectToDatabase(
-			"",
+			"DESKTOP-O0690I6@BookInventory",
 			"",
 			""
 		);

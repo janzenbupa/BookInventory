@@ -112,3 +112,15 @@ bool DbConnection::LogIn(std::string userName, std::string password)
 		return true;
 	}
 }
+
+bool DbConnection::InsertAuthor(std::string firstName, std::string lastName)
+{
+	//insert into author table
+	return true;
+}
+
+bool DbConnection::InsertBook(std::string title, std::string publishDate, std::string isbn, long long int authorId)
+{
+	//insert into book table
+	return true;
+}

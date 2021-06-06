@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 
+class Inventory;
+
 class DbConnection
 {
 
@@ -21,4 +23,8 @@ public:
 	std::vector<Inventory::Author> GetAuthors();
 
 	bool LogIn(std::string userName, std::string password);
+
+	bool InsertAuthor(std::string firstName, std::string lastName);
+
+	bool InsertBook(std::string title, std::string publishDate, std::string isbn, long long int authorId);
 };

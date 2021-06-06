@@ -142,8 +142,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BookInventory.cpp" />
-    <ClCompile Include="ConnectToSql.cpp" />
     <ClCompile Include="DbConnection.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="SignIn.cpp" />
   </ItemGroup>
   <ItemGroup>
