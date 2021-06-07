@@ -27,5 +27,4 @@ void Inventory::AddAuthor(DbConnection& con, SignIn& signIn)
 	std::cin >> password;
 
 	bool loggedIn = signIn.VerifySignIn(userName, password);
-
 }

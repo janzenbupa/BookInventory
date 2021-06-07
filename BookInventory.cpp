@@ -22,13 +22,13 @@ int main()
 		SignIn signIn;
 
 		con.ConnectToDatabase(
-			"DESKTOP-O0690I6@BookInventory",
+			"",
 			"",
 			""
 		);
 
 		int userInput;
-		std::cout << "What would you like to do?\n1. View Books\n2. View Authors\n3. Add Book\n4. Add Author\n";
+		std::cout << "What would you like to do?\n1. View Books\n2. View Authors\n3. Add Book\n4. Add Author\n5. End Program\n";
 		std::cin >> userInput;
 
 		switch (userInput)
@@ -45,6 +45,8 @@ int main()
 		case 4:
 			AddAuthor(con, signIn);
 			break;
+		case 5:
+			return 0;
 		default:
 			std::cout << "Could not understand choice.";
 			break;
@@ -99,8 +101,30 @@ void AddAuthor(DbConnection& con, SignIn& signIn)
 
 	std::cout << "Enter username: \n";
 	std::cin >> userName;
-	std::cout << "Enter password: ";
+	std::cout << "Enter password: \n";
 	std::cin >> password;
 
 	bool loggedIn = signIn.VerifySignIn(userName, password);
+
+	if (!loggedIn)
+	{
+		std::cout << "Could not verify identity.\n";
+		return;
+	}
+
+	std::string firstName, lastName;
+
+	std::cout << "Enter the author's first name.\n";
+	std::cin >> firstName;
+	std::cout << "Enter the author's last name.\n";
+	std::cin >> lastName;
+
+	bool added = con.InsertAuthor(firstName, lastName);
+	if (added)
+	{
+		std::cout << "Successfully added author.\n";
+		return;
+	}
+
+	std::cout << "Failed to add author.\n";
 }

@@ -115,8 +115,20 @@ bool DbConnection::LogIn(std::string userName, std::string password)
 
 bool DbConnection::InsertAuthor(std::string firstName, std::string lastName)
 {
-	//insert into author table
-	return true;
+	try
+	{
+		sqlCmd.setCommandText(_TSA("InsertAuthor"));
+		sqlCmd.Param(_TSA("firstName")).setAsString() = _TSA(firstName.c_str());
+		sqlCmd.Param(_TSA("lastName")).setAsString() = _TSA(lastName.c_str());
+
+		sqlCmd.Execute();
+
+		return true;
+	}
+	catch(int error)
+	{
+		return false;
+	}
 }
 
 bool DbConnection::InsertBook(std::string title, std::string publishDate, std::string isbn, long long int authorId)
