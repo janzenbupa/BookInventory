@@ -25,6 +25,6 @@ public:
 		std::string LastName;
 	};
 
-	void AddBook(DbConnection& con, SignIn& signIn);
-	void AddAuthor(DbConnection& con, SignIn& signIn);
+	/*void AddBook(DbConnection& con, SignIn& signIn);
+	void AddAuthor(DbConnection& con, SignIn& signIn);*/
 };

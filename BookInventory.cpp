@@ -12,6 +12,8 @@ std::vector<Inventory::Book> GetBooks(DbConnection&);
 std::vector<Inventory::Author> GetAuthors(DbConnection&);
 void AddBook(DbConnection&, SignIn&);
 void AddAuthor(DbConnection&, SignIn&);
+void ViewBooks(std::vector<Inventory::Book>);
+void ViewAuthors(std::vector<Inventory::Author>);
 
 int main()
 {
@@ -28,6 +30,8 @@ int main()
 		);
 
 		int userInput;
+		std::vector<Inventory::Book> books;
+		std::vector<Inventory::Author> authors;
 
 		while (true)
 		{
@@ -37,10 +41,14 @@ int main()
 			switch (userInput)
 			{
 			case 1:
-				GetBooks(con);
+				books = GetBooks(con);
+				ViewBooks(books);
+				std::cout << "\n";
 				break;
 			case 2:
-				GetAuthors(con);
+				authors = GetAuthors(con);
+				ViewAuthors(authors);
+				std::cout << "\n";
 				break;
 			case 3:
 				AddBook(con, signIn);
@@ -166,4 +174,25 @@ void AddAuthor(DbConnection& con, SignIn& signIn)
 	}
 
 	std::cout << "Failed to add author.\n";
+}
+
+void ViewBooks(std::vector<Inventory::Book> books)
+{
+	for (int i = 0; i < books.size(); i++)
+	{
+		std::cout << books[i].Title << " - " << books[i].PublishDate << " - " << books[i].ISBN;
+		std::cout << "\n";
+	}
+
+	return;
+}
+
+void ViewAuthors(std::vector < Inventory::Author> authors)
+{
+	for (int i = 0; i < authors.size(); i++)
+	{
+		std::cout << authors[i].FirstName << " " << authors[i].LastName << "\n";
+	}
+
+	return;
 }
