@@ -26,5 +26,5 @@ public:
 
 	bool InsertAuthor(std::string firstName, std::string lastName);
 
-	bool InsertBook(std::string title, std::string publishDate, std::string isbn, long long int authorId);
+	bool InsertBook(std::string title, std::string publishDate, std::string isbn, std::string firstName, std::string lastName);
 };

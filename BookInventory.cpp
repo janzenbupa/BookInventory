@@ -22,35 +22,39 @@ int main()
 		SignIn signIn;
 
 		con.ConnectToDatabase(
-			"",
+			"DESKTOP-O0690I6@BookInventory",
 			"",
 			""
 		);
 
 		int userInput;
-		std::cout << "What would you like to do?\n1. View Books\n2. View Authors\n3. Add Book\n4. Add Author\n5. End Program\n";
-		std::cin >> userInput;
 
-		switch (userInput)
+		while (true)
 		{
-		case 1:
-			GetBooks(con);
-			break;
-		case 2:
-			GetAuthors(con);
-			break;
-		case 3:
-			AddBook(con, signIn);
-			break;
-		case 4:
-			AddAuthor(con, signIn);
-			break;
-		case 5:
-			return 0;
-		default:
-			std::cout << "Could not understand choice.";
-			break;
-		};
+			std::cout << "What would you like to do?\n1. View Books\n2. View Authors\n3. Add Book\n4. Add Author\n5. End Program\n";
+			std::cin >> userInput;
+
+			switch (userInput)
+			{
+			case 1:
+				GetBooks(con);
+				break;
+			case 2:
+				GetAuthors(con);
+				break;
+			case 3:
+				AddBook(con, signIn);
+				break;
+			case 4:
+				AddAuthor(con, signIn);
+				break;
+			case 5:
+				return 0;
+			default:
+				std::cout << "Could not understand choice.";
+				break;
+			};
+		}
 
 
 		/*while (con.FetchNext())
@@ -89,10 +93,45 @@ void AddBook(DbConnection& con, SignIn& signIn)
 
 	std::cout << "Enter username: \n";
 	std::cin >> userName;
-	std::cout << "Enter password: ";
+	std::cin.clear();
+	std::cout << "Enter password: \n";
 	std::cin >> password;
+	std::cin.clear();
 
 	bool loggedIn = signIn.VerifySignIn(userName, password);
+
+	if (!loggedIn)
+	{
+		std::cout << "Could not verify identity.\n";
+		return;
+	}
+
+	std::string title, publishDate, isbn, firstName, lastName;
+
+	std::cout << "Enter the book Title.\n";
+	std::getline(std::cin >> std::ws, title);
+	std::cin.clear();
+	std::cout << "Enter the publish date.\n";
+	std::getline(std::cin >> std::ws, publishDate);
+	std::cin.clear();
+	std::cout << "Enter the ISBN.\n";
+	std::cin >> isbn;
+	std::cin.clear();
+	std::cout << "Enter the author's first name.\n";
+	std::getline(std::cin >> std::ws, firstName);
+	std::cin.clear();
+	std::cout << "Enter the author's last name.\n";
+	std::getline(std::cin >> std::ws, lastName);
+	std::cin.clear();
+
+	bool added = con.InsertBook(title, publishDate, isbn, firstName, lastName);
+	if (added)
+	{
+		std::cout << "Successfully added book.\n";
+		return;
+	}
+
+	std::cout << "Failed to add book.\n";
 }
 
 void AddAuthor(DbConnection& con, SignIn& signIn)

@@ -131,8 +131,25 @@ bool DbConnection::InsertAuthor(std::string firstName, std::string lastName)
 	}
 }
 
-bool DbConnection::InsertBook(std::string title, std::string publishDate, std::string isbn, long long int authorId)
+bool DbConnection::InsertBook(std::string title, std::string publishDate, std::string isbn, std::string firstName, std::string lastName)
 {
-	//insert into book table
+	try
+	{
+		sqlCmd.setCommandText(_TSA("InsertBook"));
+		sqlCmd.Param(_TSA("title")).setAsString() = _TSA(title.c_str());
+		sqlCmd.Param(_TSA("publishDate")).setAsString() = _TSA(publishDate.c_str());
+		sqlCmd.Param(_TSA("isbn")).setAsString() = _TSA(isbn.c_str());
+		sqlCmd.Param(_TSA("authorFirstName")).setAsString() = _TSA(firstName.c_str());
+		sqlCmd.Param(_TSA("authorLastName")).setAsString() = _TSA(lastName.c_str());
+
+		sqlCmd.Execute();
+
+		return true;
+	}
+	catch (int exception)
+	{
+		return false;
+	}
+
 	return true;
 }
